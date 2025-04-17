@@ -158,13 +158,13 @@ Module Nominal (A : Atom).
   Lemma swap_fn_involution {a b} : (swap_fn a b) ∘ (swap_fn a b) = id.
   Proof.
     apply functional_extensionality.
-    intros x. unfold compose,swap_fn.
+    intros x. unfold compose, swap_fn.
     destruct (V.E.eq_dec a x),( V.E.eq_dec b x),
-    (V.E.eq_dec a b),(V.E.eq_dec b b),(V.E.eq_dec a a),(V.E.eq_dec b a);
+    (V.E.eq_dec a b),(V.E.eq_dec b b),(V.E.eq_dec a a),(V.E.eq_dec b a); unfold id;
       rewrite eq_leibniz_iff in *;
       tryfalse;auto;
     destruct (V.E.eq_dec a x),( V.E.eq_dec b x);rewrite eq_leibniz_iff in *;
-      tryfalse;auto.
+      tryfalse; auto; exfalso; auto. rewrite <- e in n. auto.
   Qed.
 
   Hint Unfold swap_fn.
@@ -394,7 +394,7 @@ Module Nominal (A : Atom).
     apply Disjoint_spec.
     intros. unfold not. intros H1. destruct H1. simpl in *.
     rewrite P.Dec.F.singleton_iff in *.
-    rewrite eq_leibniz_iff in *. tryfalse.
+    rewrite eq_leibniz_iff in *. tryfalse. rewrite <- H0 in H1. auto.
   Qed.
 
   Lemma disjoint_not_in_2 {X e} : Disjoint (singleton e) X -> ~ In e X.

@@ -5,7 +5,8 @@
     anything else *)
 
 Tactic Notation "false_goal" :=
-  elimtype False.
+(*   elimtype False. *)
+exfalso False.
 
 (** [false_post] is the underlying tactic used to prove goals
     of the form [False]. In the default implementation, it proves
@@ -35,7 +36,8 @@ Tactic Notation "tryfalse" :=
     Example: [tryfalse by congruence/] *)
 
 Tactic Notation "tryfalse" "by" tactic(tac) "/" :=
-  try solve [ false; instantiate; tac ].
+(*   try solve [ false; instantiate; tac ].  *)
+  try solve [ false ; tac ].
 
 
 Ltac rewr_assumption := idtac; match goal with

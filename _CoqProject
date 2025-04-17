@@ -1,4 +1,4 @@
--R Stlc Stlc
+-R . Stlc
 Stlc/stlc.v
 Stlc/OrdSet.v
 Stlc/CustomTactics.v
@@ -11,4 +11,4 @@ Stlc/nomstlc.v
 Stlc/stlc_bidir.v
 Stlc/HList.v
 Stlc/Goedel.v
-Stlc/StlcCCC.v
+

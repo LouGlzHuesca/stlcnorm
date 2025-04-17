@@ -28,7 +28,7 @@ Definition is_zero (n : nat) : bool :=
   | _ => false
   end.
 
-(** The intrincic syntax for STLC *)
+(** The intrinsic syntax for STLC *)
 Inductive Exp : Ctx -> Ty -> Type :=
 | Star : forall {Γ}, Exp Γ tU
 | Var : forall {Γ τ},
@@ -122,7 +122,7 @@ Equations denoteExp {Γ τ} (ρ : Env Γ) (e : Exp Γ τ) : ⟦τ⟧ :=
   { ⟦ Star ⟧ρ := tt;
     ⟦ Var i ⟧ρ  := hget ρ i;
     ⟦ Lam τ σ e ⟧ρ := fun (x : ⟦τ⟧) => denoteExp (ρ ,, x) e;
-    ⟦ App τ σ e1 e2 ⟧ρ := (⟦e1⟧ρ) (⟦e2⟧ρ);
+    ⟦ App _ σ e1 e2 ⟧ρ := (⟦e1⟧ρ) (⟦e2⟧ρ);
     ⟦ Zero ⟧ρ := O;
     ⟦ Suc ⟧ρ := S;
     ⟦ Nat_elim e0 f⟧ρ := fun n => nat_elim _ (⟦e0⟧ρ) (⟦f⟧ρ) n }
